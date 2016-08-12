@@ -1,0 +1,45 @@
+{
+    "text": {
+      "intro": "Dies ist lediglich ein Beispiel. Du kannst es an deine Bedürfnisse anpassen."
+    },
+    "title": {
+      "eMailConfirmation": "Bestätigung Ihrer E-Mail-Adresse",
+      "pageNotFound": "Seite nicht gefunden"
+    },
+    "commands":{
+      "pleaseVerifyYourEMailAccount": "Nach der Registrierung wurde Ihnen ein Bestätigungslink per E-Mail zugesandt, bitte klicken Sie auf diesen Link, um zu bestätigen, dass diese E-Mail-Adresse Ihnen gehört."
+    },
+    "action": {
+      "abort": "Abbrechen",
+      "login": "Anmelden",
+      "logout": "Abmelden",
+      "register": "Registrieren",
+      "newAccount": "Neues Konto anlegen"
+    },
+    "general": {
+      "error": "Fehler"
+    },
+    "state": {
+      "done": "fertig"
+    },
+    "auth": {
+      "username": "Benutzername",
+      "password": "Passwort",
+      "email": "E-Mail-Adresse",
+      "passwordRepeat": "Passwort wiederholen"
+    },
+    "request":{
+      "fail": "Anfrage fehlgeschlagen!",
+      "success": "Die Anfrage war erfolgreich!"
+    },
+    "message": {
+      "error": "Es ist ein Fehler aufgetreten",
+      "pleaseWait": "Bitte warten Sie einen Augenblick",
+      "goodbye": "Bis bald!",
+      "welcome": "Willkommen!",
+      "greetSomeone": "Willkommen {{ name }}!",
+      "hello": "Hallo",
+      "pageNotFound": "Diese Seite existiert leider nicht"
+    }
+
+}

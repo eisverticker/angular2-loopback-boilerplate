@@ -1,0 +1,63 @@
+<form class="panel panel-primary" (ngSubmit)="register()" #form="ngForm">
+  <div class="panel-heading">
+    Registrierung
+  </div>
+  <div class="panel-body">
+
+    <div *ngIf="isLastRegistrationFailed && !isRegistering" class="alert  alert-danger">
+        <strong>Registrierung fehlgeschlagen</strong> Bitte versuchen Sie es erneut!
+    </div>
+
+    <!-- Form Elements-->
+    <div class="form-group">
+      <label for="mail">E-Mail-Adresse*</label>
+      <div class="input-group">
+        <input [(ngModel)]="user.mail" name="mail" #mail="ngModel" pattern=".{2,20}@.{2,20}\..{2,5}" type="email" class="form-control" placeholder="E-Mail" required>
+        <span class="input-group-addon">
+          <span *ngIf="!(mail.valid)" class="glyphicon glyphicon-minus"></span>
+          <span *ngIf="mail.valid" class="glyphicon glyphicon-ok"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Nutzername*</label>
+      <div class="input-group">
+        <input [(ngModel)]="user.name" name="name" #name="ngModel" pattern="^[\wäöüÄÖÜ]{3,15}$" type="text" class="form-control" placeholder="Name" required>
+        <span class="input-group-addon">
+          <span *ngIf="!(name.valid)" class="glyphicon glyphicon-minus"></span>
+          <span *ngIf="name.valid" class="glyphicon glyphicon-ok"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Passwort*</label>
+      <div class="input-group">
+      <input [(ngModel)]="user.password" name="password" #password="ngModel" pattern=".{3,}" type="password" class="form-control" placeholder="Passwort" required>
+        <span class="input-group-addon">
+          <span *ngIf="!(password.valid)" class="glyphicon glyphicon-minus"></span>
+          <span *ngIf="password.valid" class="glyphicon glyphicon-ok"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="passwordCheck">Passwort wiederholen</label>
+      <div class="input-group">
+      <input (keyup)="matchPasswords()" [(ngModel)]="passwordCheck" name="passwordCheck" #passwordCheckVar="ngModel" type="password" class="form-control" placeholder="Passwort" required>
+        <span class="input-group-addon">
+          <span *ngIf="!(isPasswordMatching && password.valid)" class="glyphicon glyphicon-minus"></span>
+          <span *ngIf="isPasswordMatching && password.valid" class="glyphicon glyphicon-ok"></span>
+        </span>
+      </div>
+    </div>
+    <!-- End of Form Elements -->
+
+
+    <button [disabled]="!form.valid" type="submit" class="btn btn-primary">
+      <span>Abschicken</span>
+      <i *ngIf="isRegistering" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+    </button>
+  </div>
+</form>
