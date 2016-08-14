@@ -1,8 +1,9 @@
-var gulp = require('gulp')
-		uglify = require('gulp-uglify')
-		minify = require('gulp-minify')
-		concat = require('gulp-concat')
-    notify = require("gulp-notify");
+var gulp 			= require('gulp')
+		uglify 		= require('gulp-uglify')
+		minify 		= require('gulp-minify')
+		concat 		= require('gulp-concat')
+    notify 		= require('gulp-notify')
+		mergeJson = require('gulp-merge-json');
 
 
 var paths = {
@@ -11,7 +12,8 @@ var paths = {
 	 scriptDest: './web/js/',
 	 cssDest: './web/css/',
 	 fontDest: './web/fonts/',
-	 resourcesDir: './app/Resources/'
+	 resourcesDir: './app/Resources/',
+	 localeDest: 'web/locales/'
 };
 
 /**
@@ -81,6 +83,23 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest(paths.fontDest));
 });
 
+gulp.task('localesDe', function() {
+	return gulp.src('locales/**/de.json')
+	.pipe(mergeJson('de.json'))
+	.pipe(gulp.dest(paths.localeDest));
+});
+
+gulp.task('localesEn', function() {
+	return gulp.src('locales/**/en.json')
+	.pipe(mergeJson('en.json'))
+	.pipe(gulp.dest(paths.localeDest));
+});
+
+gulp.task('localesRu', function() {
+	return gulp.src('locales/**/ru.json')
+	.pipe(mergeJson('ru.json'))
+	.pipe(gulp.dest(paths.localeDest));
+});
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['scriptsGeneral', 'scriptsFrontEnd','scriptsBackEnd','cssFrontEnd', 'cssGeneral','cssBackEnd','fonts']);
+gulp.task('default', ['scriptsGeneral', 'scriptsFrontEnd','scriptsBackEnd','cssFrontEnd', 'cssGeneral','cssBackEnd','fonts', 'localesDe', 'localesEn','localesRu']);

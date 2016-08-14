@@ -14,7 +14,7 @@ import { Http } from '@angular/http';
   imports:      [
     TranslateModule.forRoot({
       provide: TranslateLoader,
-      useFactory: (http: Http) => new TranslateStaticLoader(http, '/web/locale', '.json'),
+      useFactory: (http: Http) => new TranslateStaticLoader(http, '/web/locales', '.json'),
       deps: [Http]
     })
   ],
