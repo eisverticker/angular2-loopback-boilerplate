@@ -1,26 +1,26 @@
 <form class="panel panel-primary" (ngSubmit)="login()" #form="ngForm">
-  <div class="panel-heading">Anmeldung</div>
+  <div class="panel-heading">{{ 'title.login' | translate }}</div>
   <div class="panel-body">
 
     <div *ngIf="isLastLoginFailed && !isLoggingIn" class="alert  alert-danger">
-        <strong>Anmeldung fehlgeschlagen!</strong> Bitte versuchen Sie es erneut!
+        <strong>{{ 'request.loginFailed' | translate }}</strong> {{ 'command.pleaseTryAgain' | translate }}
     </div>
 
     <div class="form-group">
-      <label for="mail">E-Mail-Adresse</label>
-      <input [(ngModel)]="user.mail" name="mail" #mail="ngModel" type="email" class="form-control" placeholder="E-Mail" validateEmail required>
+      <label for="mail">{{ 'auth.email' | translate }}</label>
+      <input [(ngModel)]="user.mail" name="mail" #mail="ngModel" type="email" class="form-control" validateEmail required>
     </div>
 
     <div class="form-group">
-      <label for="password">Passwort</label>
-      <input [(ngModel)]="user.password" name="password" #password="ngModel" pattern=".{3,}" type="password" class="form-control" placeholder="Passwort" required>
+      <label for="password">{{ 'auth.password' | translate }}</label>
+      <input [(ngModel)]="user.password" name="password" #password="ngModel" pattern=".{3,}" type="password" class="form-control" required>
     </div>
 
     <button [disabled]="!form.valid" type="submit" class="btn btn-primary">
-      <span>Anmelden</span>
+      <span>{{ 'action.login' | translate }}</span>
       <i *ngIf="isLoggingIn" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
     </button>
-    <a [routerLink]="['/reset']" class="btn btn-default">Passwort vergessen</a>
-    <a [routerLink]="['/register']" class="btn btn-default">Neues Konto anlegen <span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a [routerLink]="['/reset']" class="btn btn-default">{{ 'action.forgottenPassword' | translate }}</a>
+    <a [routerLink]="['/register']" class="btn btn-default">{{ 'action.newAccount' | translate }} <span class="glyphicon glyphicon-chevron-right"></span></a>
   </div>
 </form>

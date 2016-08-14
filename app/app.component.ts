@@ -39,26 +39,32 @@ export class AppComponent implements OnInit{
     let lang = supportedLanguages.indexOf(browserLang) === -1 ? 'en': browserLang;
 
      //the language to use
-    translate.use(lang);
+    this.translate.use(lang);
 
     //this language will be used as a fallback if a translation wasn't found in the current language
-    translate.setDefaultLang('en');
+    this.translate.setDefaultLang('en');
 
   }
 
   ngOnInit(){
     this.notify.messages.subscribe(
       notification => {
-        if(notification.tags.indexOf("success") !== -1){
-          this.toastr.success(notification.message);
-        }else if(
-          notification.tags.indexOf("fail") !== -1 ||
-          notification.tags.indexOf("error") !== -1)
-        {
-          this.toastr.error(notification.message);
-        }else{
-          this.toastr.info(notification.message);
-        }
+        this.translate.get(notification.message).subscribe(
+          (translatedMessage) => {
+
+            if(notification.tags.indexOf("success") !== -1){
+              this.toastr.success(translatedMessage);
+            }else if(
+              notification.tags.indexOf("fail") !== -1 ||
+              notification.tags.indexOf("error") !== -1)
+            {
+              this.toastr.error(translatedMessage);
+            }else{
+              this.toastr.info(translatedMessage);
+            }
+
+          }
+        );
       }
     );
 

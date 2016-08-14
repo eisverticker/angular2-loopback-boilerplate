@@ -63,7 +63,9 @@ export class AuthService{
     return this.http.post(this.backend.unAuthUrl('AppUsers/login'), {
       "email": user.mail,
       "password": user.password
-    }).toPromise()
+    })
+    .timeout(5000, "timeout")
+    .toPromise()
     .then(
       (res) => {
          let data = res.json();
@@ -85,6 +87,7 @@ export class AuthService{
   }
   public logout(): Promise<void>{
     return this.http.post(this.backend.authUrl('AppUsers/logout', this.token),{})
+     .timeout(5000, "timeout")
      .toPromise()
      .then(
        ()=> {
@@ -105,7 +108,9 @@ export class AuthService{
 
     return this.http.post(url, {
       "email": user.mail
-    }).toPromise();
+    })
+    .timeout(5000, "timeout")
+    .toPromise();
   }
 
   public register(user: User): Promise<void>{
@@ -117,6 +122,7 @@ export class AuthService{
       "email": user.mail,
       "password": user.password
     })
+    .timeout(5000, "timeout")
     .toPromise()
     .then(
       () => {

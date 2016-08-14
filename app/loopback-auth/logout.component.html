@@ -1,9 +1,9 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    Nutzerinformationen
+    {{ 'title.userinfo' | translate }}
   </div>
   <div class="panel-body">
-    <p>Hallo {{ user.name }}.</p>
-    <button (click)="doLogout()" class="btn btn-primary">Abmelden</button>
+    <p>{{ helloSomeone | translate: { name: user.name } }}</p>
+    <button (click)="doLogout()" class="btn btn-primary">{{ 'action.logout' | translate }}</button>
   </div>
 </div>

@@ -29,12 +29,5 @@ import { Http } from '@angular/http';
   ]
 })
 export class I18nModule {
-  /*static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: SharedModule,
-      providers: [
 
-      ]
-    };
-  }*/
 }

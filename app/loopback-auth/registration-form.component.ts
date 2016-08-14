@@ -39,11 +39,11 @@ export class RegistrationFormComponent implements OnInit{
 
       this.auth.register(this.user).then(
         () => {
-          this.notify.notify(Notification.message('Registrierung abgeschlossen!'));
+          this.notify.notify(Notification.message('request.registrationSucceeded'));
           this.done.emit(null);
         },
         () => {
-          this.notify.notify(new Notification('Registrierung fehlgeschlagen',['fail']));
+          this.notify.notify(new Notification('request.registrationFailed',['fail']));
         }
       );
 

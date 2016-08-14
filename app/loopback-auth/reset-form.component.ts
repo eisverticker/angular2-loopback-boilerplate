@@ -36,7 +36,7 @@ export class ResetFormComponent implements OnInit{
     this.auth.resetPassword(this.user).then(
       () => {
         this.isResetting = false;
-        this.notify.notify(Notification.message('E-Mail wurde versandt!'));
+        this.notify.notify(Notification.message('message.emailSent'));
         this.done.emit(null);
       },
       () => {

@@ -4,20 +4,27 @@
     },
     "title": {
       "eMailConfirmation": "Bestätigung Ihrer E-Mail-Adresse",
-      "pageNotFound": "Seite nicht gefunden"
+      "pageNotFound": "Seite nicht gefunden",
+      "login": "Anmeldung",
+      "register": "Registrierung",
+      "userinfo": "Nutzerinformationen"
     },
-    "commands":{
-      "pleaseVerifyYourEMailAccount": "Nach der Registrierung wurde Ihnen ein Bestätigungslink per E-Mail zugesandt, bitte klicken Sie auf diesen Link, um zu bestätigen, dass diese E-Mail-Adresse Ihnen gehört."
+    "command":{
+      "pleaseVerifyYourEMailAccount": "Nach der Registrierung wurde Ihnen ein Bestätigungslink per E-Mail zugesandt, bitte klicken Sie auf diesen Link, um zu bestätigen, dass diese E-Mail-Adresse Ihnen gehört.",
+      "pleaseTryAgain": "Bitte versuchen Sie es erneut!"
     },
     "action": {
+      "send": "Abschicken",
       "abort": "Abbrechen",
       "login": "Anmelden",
       "logout": "Abmelden",
       "register": "Registrieren",
+      "forgottenPassword": "Passwort vergessen",
       "newAccount": "Neues Konto anlegen"
     },
     "general": {
-      "error": "Fehler"
+      "error": "Fehler",
+      "pigNose": "Schweinenase"
     },
     "state": {
       "done": "fertig"
@@ -30,15 +37,21 @@
     },
     "request":{
       "fail": "Anfrage fehlgeschlagen!",
-      "success": "Die Anfrage war erfolgreich!"
+      "success": "Die Anfrage war erfolgreich!",
+      "loginFailed": "Anmeldung fehlgeschlagen!",
+      "registrationFailed": "Registrierung fehlgeschlagen!",
+      "registrationSucceeded": "Registrierung abgeschlossen!",
+      "logoutFailed": "Du konntest auf dem Server nicht abgemeldet werden!"
     },
     "message": {
       "error": "Es ist ein Fehler aufgetreten",
       "pleaseWait": "Bitte warten Sie einen Augenblick",
+      "emailSent": "E-Mail wurde versandt!",
       "goodbye": "Bis bald!",
       "welcome": "Willkommen!",
       "greetSomeone": "Willkommen {{ name }}!",
       "hello": "Hallo",
+      "helloSomeone": "Hallo {{ name }}!",
       "pageNotFound": "Diese Seite existiert leider nicht"
     }
 

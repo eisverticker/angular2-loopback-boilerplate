@@ -31,7 +31,7 @@ export class LoginFormComponent implements OnInit{
     this.isLoggingIn = true;
     this.auth.login(this.user).then(
       (data) => {
-        this.notify.notify(new Notification("Willkommen",['success']));
+        this.notify.notify(new Notification('message.welcome',['success']));
         this.done.emit(data);
         this.isLoggingIn = false;
       }

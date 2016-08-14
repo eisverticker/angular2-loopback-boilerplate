@@ -30,13 +30,13 @@ export class LogoutComponent implements OnInit{
   public doLogout(){
     this.auth.logout().then(
       () => {
-        this.notify.notify(new Notification("Auf Wiedersehen!", ['info']));
+        this.notify.notify(new Notification('message.goodbye', ['info']));
         this.done.emit(null);
       },
       (err) => {
         console.log(err);
         this.notify.notify(
-          Notification.message("Du konntest auf dem Server nicht abgemeldet werden!")
+          Notification.message('request.logoutFailed')
         )
       }
     );

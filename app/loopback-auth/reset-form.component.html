@@ -5,7 +5,7 @@
   <div class="panel-body">
 
     <div *ngIf="isLastResetFailed && !isResetting" class="alert  alert-danger">
-        <strong>Passwort konnte nicht zurückgesetzt werden!</strong> Bitte versuchen Sie es erneut!
+        <strong>{{ 'request.fail' | translate }}</strong> {{ 'command.pleaseTryAgain' | translate }}
     </div>
 
     <!-- Form Elements-->
