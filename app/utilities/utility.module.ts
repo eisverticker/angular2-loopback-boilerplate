@@ -15,11 +15,11 @@ import { NotificationService } from './notification.service';
 //modules
 import { FormsModule }   from '@angular/forms';
 import { BrowserModule  } from '@angular/platform-browser';
-
+import { ConfigurationModule  } from '../config/configuration.module';
 
 @NgModule({
     declarations: [BePatientComponent, EmailValidator],
-    imports:      [BrowserModule, FormsModule],
+    imports:      [BrowserModule, FormsModule, ConfigurationModule],
     bootstrap:    [],
     providers: [BackendHelper, LoggerService, NotificationService]
 })
