@@ -5,7 +5,6 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { NotificationService } from './utilities/notification.service';
 import { Notification } from './utilities/notification';
 import { AuthService } from './loopback-auth/auth.service';
-import { AuthAction } from './loopback-auth/auth-action';
 import { User } from './loopback-auth/user';
 
 // Add the RxJS Observable operators we need in this app.
