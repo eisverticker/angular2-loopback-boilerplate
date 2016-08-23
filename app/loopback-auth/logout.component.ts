@@ -17,6 +17,7 @@ export class LogoutComponent implements OnInit{
   @Output() done: EventEmitter<any> = new EventEmitter();
 
   public user: User = new User("","","");
+  public isLoggingOut: boolean = false;
 
   constructor(
     private auth: AuthService,
@@ -28,16 +29,23 @@ export class LogoutComponent implements OnInit{
   }
 
   public doLogout(){
+    this.isLoggingOut = true;
+
     this.auth.logout().then(
       () => {
         this.notify.notify(new Notification('message.goodbye', ['info']));
+        this.isLoggingOut = false;
         this.done.emit(null);
       },
       (err) => {
-        console.log(err);
-        this.notify.notify(
-          Notification.message('request.logoutFailed')
-        )
+        this.isLoggingOut = true;
+        if(err == "Timeout"){
+          this.notify.notify(Notification.timeout());
+        }else{
+          this.notify.notify(
+            Notification.message('request.logoutFailed')
+          );
+        }
       }
     );
   }

@@ -4,6 +4,7 @@ import { BackendHelper } from '../utilities/backend-helper';
 
 import { Observable, Subject, BehaviorSubject } from 'rxjs/Rx';
 import { User } from './user';
+import { Role } from './role';
 
 //import { AuthAction } from './auth-action';
 
@@ -11,6 +12,9 @@ import { User } from './user';
 export class AuthService{
   private isInitializedSubject: BehaviorSubject<boolean>;
   public isInitialized: Observable<boolean>;
+
+  //redirect for login (used by guards)
+  public redirectUrl: string = "/";
 
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
@@ -32,8 +36,12 @@ export class AuthService{
     );
   }
 
-  public getActiveUser(){
+  public getActiveUser(): User{
     return this.userSubject.getValue();
+  }
+
+  public getCurrentInitState(): boolean{
+    return this.isInitializedSubject.getValue();
   }
 
   public loadAuthenticatedUser(): Promise<User>{
@@ -47,9 +55,15 @@ export class AuthService{
       .toPromise()
       .then(
         (data) => {
-          let user = new User(data.username, data.email, "",[])
-          this.userSubject.next(user);
-          return user;
+          let user = new User(data.username, data.email, "",[],data.id)
+
+          return this.getRoles(this.userID).then(
+            roles => {
+              user.roles = user.roles.concat(roles);
+              this.userSubject.next(user);
+              return user;
+            }
+          );
         },
         (res) => {
           this.reset();
@@ -64,7 +78,7 @@ export class AuthService{
       "email": user.mail,
       "password": user.password
     })
-    .timeout(5000, "timeout")
+    .timeout(5000, "Timeout")
     .toPromise()
     .then(
       (res) => {
@@ -77,7 +91,9 @@ export class AuthService{
          );
       },
       (err) => {
-        if(err.status == 401){
+        if(err == "Timeout"){
+          throw err;
+        }else if(err.status == 401){
           return Promise.reject("wrong credentials");
         }else{
           throw "unexpected result 34343-AuthService";
@@ -85,14 +101,17 @@ export class AuthService{
       }
     );
   }
-  public logout(): Promise<void>{
+  public logout(): Promise<any>{
     return this.http.post(this.backend.authUrl('AppUsers/logout', this.token),{})
-     .timeout(5000, "timeout")
+     .timeout(5000, "Timeout")
      .toPromise()
      .then(
        ()=> {
          this.reset();
          this.userSubject.next(User.createGuest());
+       },
+       (err) => {
+         return this.loadAuthenticatedUser();
        }
      )
   }
@@ -109,7 +128,7 @@ export class AuthService{
     return this.http.post(url, {
       "email": user.mail
     })
-    .timeout(5000, "timeout")
+    .timeout(5000, "Timeout")
     .toPromise();
   }
 
@@ -117,18 +136,44 @@ export class AuthService{
     let url = this.backend.unAuthUrl('AppUsers');
 
     return this.http.post(url,{
-      "realm": user.name.toLowerCase(),
       "username": user.name,
       "email": user.mail,
       "password": user.password
     })
-    .timeout(5000, "timeout")
+    .timeout(5000, "Timeout")
     .toPromise()
     .then(
       () => {
         return;
       }
     );
+  }
+
+  public getRoles(userID: any): Promise<Role[]>{
+    let url = this.backend.authUrl('AppUsers/'+userID+'/roles', this.token);
+
+    if(this.token === null || userID === null){
+      return Promise.reject<Role[]>("no local user data found");
+    }else{
+      return this.http.get(url)
+      .map(data => data.json() )
+      .toPromise()
+      .then(
+        (roles) => {
+          let roleNames: Array<string> = roles.map( role => role.name );
+
+          let rolesInOrder = Role.getAvailableRoles().filter(
+            (role) => {
+              return roleNames.indexOf(role.name) !== -1;
+            }
+          );
+          return rolesInOrder;
+        },
+        (res) => {
+          return Promise.reject<Role[]>(res);
+        }
+      );
+    }
   }
 
   public get token(): string{

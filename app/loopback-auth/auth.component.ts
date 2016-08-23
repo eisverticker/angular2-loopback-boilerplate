@@ -3,13 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
 
-import { LoginFormComponent } from './login-form.component';
-import { RegistrationFormComponent } from './registration-form.component';
-import { ResetFormComponent } from './reset-form.component';
-import { LogoutComponent } from './logout.component';
-import { VerifyComponent } from './verify.component';
-import { BePatientComponent } from '../utilities/be-patient.component';
-
 import { User } from './user';
 
 @Component({
@@ -45,7 +38,7 @@ export class AuthComponent implements OnInit{
                 }
               }else{
                 this.mode = "authenticated";
-              }              
+              }
             }
           }
         );

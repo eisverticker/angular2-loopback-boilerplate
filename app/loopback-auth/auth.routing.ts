@@ -1,6 +1,11 @@
 import { Routes, RouterModule } from '@angular/router';
 
+import { AuthGuardService } from './auth-guard.service';
+import { AdminGuardService } from './admin-guard.service';
+
 import { AuthComponent } from './auth.component';
+import { AdminComponent } from './admin.component';
+
 
 //import { AuthGuardService } from './auth-guard.service';
 
@@ -25,6 +30,11 @@ const routes: Routes = [
     data: {
       mode: 'reset'
     }
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AdminGuardService]
   }
 ];
 

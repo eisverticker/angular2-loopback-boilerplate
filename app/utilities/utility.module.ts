@@ -19,6 +19,7 @@ import { ConfigurationModule  } from '../config/configuration.module';
 
 @NgModule({
     declarations: [BePatientComponent, EmailValidator],
+    exports: [BePatientComponent, EmailValidator],
     imports:      [BrowserModule, FormsModule, ConfigurationModule],
     bootstrap:    [],
     providers: [BackendHelper, LoggerService, NotificationService]

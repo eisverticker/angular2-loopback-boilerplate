@@ -12,7 +12,7 @@
     <div class="form-group">
       <label for="mail">{{ 'auth.email' | translate }}*</label>
       <div class="input-group">
-        <input [(ngModel)]="user.mail" name="mail" #mail="ngModel" pattern=".{2,20}@.{2,20}\..{2,5}" type="email" class="form-control" required>
+        <input [(ngModel)]="user.mail" name="mail" #mail="ngModel" type="email" class="form-control" validateEmail required>
         <span class="input-group-addon">
           <span *ngIf="!(mail.valid)" class="glyphicon glyphicon-minus"></span>
           <span *ngIf="mail.valid" class="glyphicon glyphicon-ok"></span>
@@ -34,7 +34,7 @@
     <div class="form-group">
       <label for="password">{{ 'auth.password' | translate }}*</label>
       <div class="input-group">
-      <input [(ngModel)]="user.password" name="password" #password="ngModel" pattern=".{3,}" type="password" class="form-control" placeholder="Passwort" required>
+      <input [(ngModel)]="user.password" name="password" #password="ngModel" pattern=".{3,}" type="password" class="form-control" required>
         <span class="input-group-addon">
           <span *ngIf="!(password.valid)" class="glyphicon glyphicon-minus"></span>
           <span *ngIf="password.valid" class="glyphicon glyphicon-ok"></span>
@@ -45,7 +45,7 @@
     <div class="form-group">
       <label for="passwordCheck">{{ 'auth.passwordRepeat' | translate }}</label>
       <div class="input-group">
-      <input (keyup)="matchPasswords()" [(ngModel)]="passwordCheck" name="passwordCheck" #passwordCheckVar="ngModel" type="password" class="form-control" placeholder="Passwort" required>
+      <input (keyup)="matchPasswords()" [(ngModel)]="passwordCheck" name="passwordCheck" #passwordCheckVar="ngModel" type="password" class="form-control" required>
         <span class="input-group-addon">
           <span *ngIf="!(isPasswordMatching && password.valid)" class="glyphicon glyphicon-minus"></span>
           <span *ngIf="isPasswordMatching && password.valid" class="glyphicon glyphicon-ok"></span>
@@ -54,10 +54,9 @@
     </div>
     <!-- End of Form Elements -->
 
-
     <button [disabled]="!form.valid" type="submit" class="btn btn-primary">
       <span>{{ 'action.send' | translate }}</span>
-      <i *ngIf="isRegistering" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+      <inline-spinner [active]="isRegistering"></inline-spinner>
     </button>
   </div>
 </form>

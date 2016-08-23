@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { ExampleComponent } from './example.component';
 import { PageNotFoundComponent } from './page-not-found.component';
+import { AuthorizationRequiredComponent } from './authorization-required.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'example',
     component: ExampleComponent
+  },
+  {
+    path: '403',
+    component: AuthorizationRequiredComponent
   },
   {
     path: '**',

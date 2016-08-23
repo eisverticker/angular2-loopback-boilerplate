@@ -8,13 +8,21 @@ export class BackendHelper{
     private config: ConfigurationService
   ){}
 
-  public authUrl(ressourceUri: string, token:string){
-    return this.config.get('backendApiUrl',"http://localhost:3001/api/")+
-    ressourceUri+
-    "?access_token="+token;
+  public authUrl(ressourceUri: string, token:string, filter?: string){
+    if(filter === undefined){
+      filter = "";
+    }else{
+      filter = "&"+filter;
+    }
+    return this.config.get('backendApiUrl',"http://localhost:3001/api/")+ressourceUri+"?access_token="+token+filter;
   }
 
-  public unAuthUrl(ressourceUri: string): string{
+  public unAuthUrl(ressourceUri: string, filter?: string): string{
+    if(filter === undefined){
+      filter = "";
+    }else{
+      filter = "?"+filter;
+    }
     return this.config.get('backendApiUrl',"http://localhost:3001/api/")+ressourceUri;
   }
 

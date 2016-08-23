@@ -1,24 +1,29 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
-  selector: 'delete-button',
-  templateUrl: 'app/gadget/delete-button.component.html'
+  moduleId:     module.id,
+  selector:    'delete-button',
+  templateUrl: 'delete-button.component.html',
+  styleUrls: [],
+  providers: []
 })
 export class DeleteButtonComponent{
   @Output() xclick: EventEmitter<any> = new EventEmitter();
+  @Input() disabled: any;
 
-  constructor(){
+  constructor(private translate: TranslateService){}
 
-  }
-
-  ngOnInit(){
-
-  }
+  ngOnInit(){}
 
   clicked(){
-    if(confirm("Du bist dabei dieses Element zu löschen!") === true){
-      this.xclick.emit(null);
-    }
+    this.translate.get('message.confirmDelete').subscribe(
+      (confirmDelete) => {
+        if(confirm(confirmDelete) === true){
+          this.xclick.emit(null);
+        }
+      }
+    );
   }
 
 }

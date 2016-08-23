@@ -36,14 +36,20 @@ export class RegistrationFormComponent implements OnInit{
 
   register(){
     if(this.isPasswordMatching){
-
+      this.isRegistering = true;
       this.auth.register(this.user).then(
         () => {
           this.notify.notify(Notification.message('request.registrationSucceeded'));
+          this.isRegistering = false;
           this.done.emit(null);
         },
-        () => {
-          this.notify.notify(new Notification('request.registrationFailed',['fail']));
+        (err) => {
+          this.isRegistering = false;
+          if(err == "Timeout"){
+            this.notify.notify(Notification.timeout());
+          }else{
+            this.notify.notify(new Notification('request.registrationFailed',['fail']));
+          }
         }
       );
 

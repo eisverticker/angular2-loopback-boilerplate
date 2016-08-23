@@ -18,7 +18,7 @@
 
     <button [disabled]="!form.valid" type="submit" class="btn btn-primary">
       <span>{{ 'action.login' | translate }}</span>
-      <i *ngIf="isLoggingIn" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+      <inline-spinner [active]="isLoggingIn"></inline-spinner>
     </button>
     <a [routerLink]="['/reset']" class="btn btn-default">{{ 'action.forgottenPassword' | translate }}</a>
     <a [routerLink]="['/register']" class="btn btn-default">{{ 'action.newAccount' | translate }} <span class="glyphicon glyphicon-chevron-right"></span></a>

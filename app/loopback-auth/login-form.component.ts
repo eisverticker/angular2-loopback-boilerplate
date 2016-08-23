@@ -29,6 +29,7 @@ export class LoginFormComponent implements OnInit{
 
   login(){
     this.isLoggingIn = true;
+
     this.auth.login(this.user).then(
       (data) => {
         this.notify.notify(new Notification('message.welcome',['success']));
@@ -36,7 +37,9 @@ export class LoginFormComponent implements OnInit{
         this.isLoggingIn = false;
       }
     ,(err) => {
-        console.log(err);
+        if(err == "Timeout"){
+          this.notify.notify(Notification.timeout());
+        }
         this.isLastLoginFailed = true;
         this.isLoggingIn = false;
       }

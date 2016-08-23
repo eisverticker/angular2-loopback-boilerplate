@@ -6,13 +6,13 @@ import { AuthService }    from './auth.service';
 import { Observable } from 'rxjs/Rx';
 
 @Injectable()
-export class AuthGuardService implements CanActivate {
+export class AdminGuardService implements CanActivate {
   constructor(private auth: AuthService, private router: Router){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     if(this.auth.getCurrentInitState() === true){
-      let passed: boolean = this.auth.getActiveUser().isRegistered();
+      let passed: boolean = this.auth.getActiveUser().isAdministrator();
       if(passed === false){
         this.router.navigate(['/403']);
       }

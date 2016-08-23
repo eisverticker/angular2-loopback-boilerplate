@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard.component';
 import { ExampleComponent } from './example.component';
 import { PageNotFoundComponent } from './page-not-found.component';
+import { AuthorizationRequiredComponent } from './authorization-required.component';
 
 import { routing,
          appRoutingProviders } from './app.routing';
@@ -20,17 +21,19 @@ import { AuthModule } from './loopback-auth/auth.module';
 import { I18nModule } from './i18n/i18n.module';
 
 
+
 @NgModule({
   imports: [ BrowserModule, routing, HttpModule, UtilityModule, AuthModule, I18nModule],
   declarations: [
     AppComponent,
     DashboardComponent,
     ExampleComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AuthorizationRequiredComponent
   ],
   bootstrap: [ AppComponent ],
   providers: [
-    //{ provide: VocableService, useClass: VocableOnlineService },
+    //{ provide: VocableService, useClass: VocableOnlineService },#
     ToastsManager
   ]
 })

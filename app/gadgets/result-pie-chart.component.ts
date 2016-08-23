@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'result-pie-chart',
-  templateUrl: 'app/gadget/result-pie-chart.component.html'
+  moduleId:     module.id,
+  selector:    'result-pie-chart',
+  templateUrl: 'result-pie-chart.component.html',
+  styleUrls: [],
+  providers: []
 })
 export class ResultPieChartComponent implements OnInit{
   @Input() right: number;
